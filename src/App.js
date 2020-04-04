@@ -13,14 +13,13 @@ import {
   Link
 } from "react-router-dom";
 import Login from './components/Login/Login';
-
-export const UserContext = createContext();
+import { AuthProvider } from './components/Login/useAuth';
 
 function App() {
   const user = {name: 'Rahul Biswas', email: 'rbiswas596@gmail.com'}
   return (
     <div>
-      <UserContext.Provider value={user.name}>
+      <AuthProvider value={user.name}>
         <Header></Header>
         <Router>
           <Switch>
@@ -47,7 +46,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </UserContext.Provider>
+      </AuthProvider>
     </div>
   );
 }

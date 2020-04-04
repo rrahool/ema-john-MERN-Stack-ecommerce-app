@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../App';
+import React from 'react';
+import { useAuth } from '../Login/useAuth';
 
 
 const Cart = (props) => {
     const cart = props.cart;
-    const user = useContext(UserContext);
-    // console.log(user);
+    const auth = useAuth();
+    console.log(auth.user);
 
     /* We can use reduce or for loop to retrieve the total price of products added to the cart*/
     /* USING reduce*/
@@ -39,7 +39,7 @@ const Cart = (props) => {
             {
                 props.children
             }
-            <p>{user}</p>
+            <p>{}</p>
         </div>
         
     );

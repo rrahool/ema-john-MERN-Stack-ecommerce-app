@@ -3,7 +3,7 @@ import Auth from './useAuth';
 
 const Login = () => {
     const auth = Auth();
-    console.log(auth);
+    // console.log(auth);
     // debugger;
     
     return (
