@@ -6,6 +6,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -31,6 +32,27 @@ const getUser = user => {
     return {name: displayName, email, photo: photoURL};
 }
 
+export function PrivateRoute({ children, ...rest }) {
+    const auth = useAuth();
+    return (
+      <Route
+        {...rest}
+        render={({ location }) =>
+          auth.user ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
+    );
+  }
+
 const Auth = () => {
 
     const [user, setUser] = useState(null);
@@ -39,7 +61,7 @@ const Auth = () => {
 
         const provider = new firebase.auth.GoogleAuthProvider();
 
-        firebase.auth().signInWithPopup(provider)
+        return firebase.auth().signInWithPopup(provider)
             .then(res => {
                 // console.log(res);   
                 
@@ -69,7 +91,6 @@ const Auth = () => {
                 const currentUser = getUser(user);
                 setUser(currentUser);
                 console.log(currentUser);
-                
             } else {
               // No user is signed in.
             }

@@ -13,7 +13,8 @@ import {
   Link
 } from "react-router-dom";
 import Login from './components/Login/Login';
-import { AuthProvider } from './components/Login/useAuth';
+import { AuthProvider, PrivateRoute } from './components/Login/useAuth';
+import Shipment from './components/Shipment/Shipment';
 
 function App() {
   const user = {name: 'Rahul Biswas', email: 'rbiswas596@gmail.com'}
@@ -38,6 +39,9 @@ function App() {
             <Route path="/product/:productKey">
                 <ProductDetail></ProductDetail>
             </Route>
+            <PrivateRoute path="/shipment">
+                <Shipment></Shipment>
+            </PrivateRoute>
             <Route exact path="/login">
               <Login></Login>
             </Route>

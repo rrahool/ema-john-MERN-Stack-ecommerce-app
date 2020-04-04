@@ -33,8 +33,9 @@ const Header = () => {
                 <a href="/shop">Shop</a>
                 <a href="/review">Order Review</a>
                 <a href="/inventory">Manage Inventory</a>
-                <a href="/login">Sign in</a>
-                <span style={{color: 'white'}}>{}</span>
+                {
+                    auth.user ? <span style={{color: 'yellow'}}>{auth.user.name}</span> : <a href="/login">Sign in</a>
+                }
             </nav>
         </div>
     );
