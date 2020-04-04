@@ -78,11 +78,15 @@ const Auth = () => {
     }
 
     const signOut = () => {
-        firebase.auth().signOut().then(function() {
+        return firebase.auth().signOut()
+        .then(function() {
             setUser(null);
-          }).catch(function(error) {
+            return true;
+        })
+        .catch(function(error) {
             console.log(error);
-          });
+            return false;
+        });
     }
 
     useEffect(() => {

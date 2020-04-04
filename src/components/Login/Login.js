@@ -14,12 +14,20 @@ const Login = () => {
         });
     }
     
+    const handleSignOut = () => {
+        auth.signOut()
+        .then(res => {
+            // console.log("redirect");
+            window.location.pathname = '/';
+        });
+    }
+
     return (
         <div>
             <h1>Login Page</h1>
             {
 
-                auth.user ? <button onClick={auth.signOut}>Sign Out</button> :
+                auth.user ? <button onClick={handleSignOut}>Sign Out</button> :
                 <button onClick={handleSignIn}>Sign in with Google</button>
 
             }

@@ -59,18 +59,25 @@ const Review = () => {
                                     </ReviewItem>)
                 }
                 <br/>
-                <p style={{textAlign: "center"}}>
+                <span style={{textAlign: "center"}}>
                     {thankyou}
-                </p> 
+                    {
+                        !cart.length && <h1>Your cart is empty. <a href="/shop">Keep Shopping</a> </h1>
+                    }
+                </span> 
             </div>
             <div className="cart-contianer">
                 <Cart cart={cart}>
-                    <Link to="/shipment">
+                    {
+                        !cart.length ? <a href="/shop" className="main-button">Go to Shop</a> :
+                        <Link to="/shipment">
                         {
-                            auth.user ? <button className="main-button">Proceed Checkout</button>
+                            auth.user ? <button onClick={handlePlaceOrder} className="main-button">Proceed Checkout</button>
                             : <button className="main-button">Login to Proceed</button>
                         }
-                    </Link>
+                        </Link>
+                    }
+                    
                 </Cart>
             </div>            
         </div>
